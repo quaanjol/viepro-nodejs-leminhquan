@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <nav>
+            <div id="menu" class="collapse navbar-collapse">
+                <ul>
+                    <% menus.forEach(item => { %>
+                        <li class="menu-item">
+                            <a href="../../category-<%= item.cat_name %>-<%= item._id %> ">
+                                <%= item.cat_name %>
+                            </a>
+                        </li>
+                        <% }) %>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

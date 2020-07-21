@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include("../layouts/head") %>
+        <title>VietPro Mobile Shop</title>
+        <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+
+    <%- include('../layouts/header') %>
+
+        <!--	Body	-->
+        <div id="body">
+            <div class="container">
+                <%- include('../layouts/menu') %>
+                    <div class="row">
+                        <div id="main" class="col-lg-8 col-md-12 col-sm-12">
+                            <%- include("../layouts/slide") %>
+
+                                <!--	Feature Product	-->
+                                <div class="products">
+                                    <h3>Sản phẩm nổi bật</h3>
+                                    <div class="product-list card-deck">
+                                        <% for(let i = 0; i < 3; i ++) { %>
+                                            <div class="product-item card text-center">
+                                                <a href="../../product-detail-<%= productFeatured[i]._id %>"><img src="../admin/img/<%= productFeatured[i].prd_image %>"></a>
+                                                <h4>
+                                                    <a href="../../product-detail-<%= productFeatured[i]._id %>">
+                                                        <%= productFeatured[i].prd_name %>
+                                                    </a>
+                                                </h4>
+                                                <p>Giá Bán: <span><%= formatPrice(productFeatured[i].prd_price)%></span></p>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <div class="product-list card-deck">
+                                        <% for(let i = 3; i < productFeatured.length; i ++) { %>
+                                            <div class="product-item card text-center">
+                                                <a href="../../product-detail-<%= productFeatured[i]._id %>"><img src="../admin/img/<%= productFeatured[i].prd_image %>"></a>
+                                                <h4>
+                                                    <a href="../../product-detail-<%= productFeatured[i]._id %>">
+                                                        <%= productFeatured[i].prd_name %>
+                                                    </a>
+                                                </h4>
+                                                <p>Giá Bán: <span><%= formatPrice(productFeatured[i].prd_price)%></span></p>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                </div>
+                                <!--	End Feature Product	-->
+
+
+                                <!--	Latest Product	-->
+                                <div class="products">
+                                    <h3>Sản phẩm mới</h3>
+                                    <div class="product-list card-deck">
+                                        <% for(let i = 0; i < 3; i ++) { %>
+                                            <div class="product-item card text-center">
+                                                <a href="../../product-detail-<%= newProducts[i]._id %>"><img src="../admin/img/<%= newProducts[i].prd_image %>"></a>
+                                                <h4>
+                                                    <a href="../../product-detail-<%= newProducts[i]._id %>">
+                                                        <%= newProducts[i].prd_name %>
+                                                    </a>
+                                                </h4>
+                                                <p>Giá Bán: <span><%= formatPrice(newProducts[i].prd_price)%></span></p>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <div class="product-list card-deck">
+                                        <% for(let i = 3; i < newProducts.length; i ++) { %>
+                                            <div class="product-item card text-center">
+                                                <a href="../../product-detail-<%= newProducts[i]._id %>"><img src="../admin/img/<%= newProducts[i].prd_image %>"></a>
+                                                <h4>
+                                                    <a href="../../product-detail-<%= newProducts[i]._id %>">
+                                                        <%= newProducts[i].prd_name %>
+                                                    </a>
+                                                </h4>
+                                                <p>Giá Bán: <span><%= formatPrice(newProducts[i].prd_price)%></span></p>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                </div>
+                                <!--	End Latest Product	-->
+
+                        </div>
+
+                        <%- include("../layouts/sidebar") %>
+                    </div>
+            </div>
+        </div>
+        <!--	End Body	-->
+
+        <%- include("../layouts/footer") %>
+
+</body>
+
+</html>

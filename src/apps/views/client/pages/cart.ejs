@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include("../layouts/head") %>
+        <title>Giỏ hàng</title>
+        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/cart.css">
+</head>
+
+<body>
+    <!--	Header	-->
+    <%- include('../layouts/header') %>
+
+        <!--	Body	-->
+        <div id="body">
+            <div class="container">
+                <%- include('../layouts/menu') %>
+                    <div class="row">
+                        <div id="main" class="col-lg-8 col-md-12 col-sm-12">
+                            <!--	Slider	-->
+                            <div id="slide" class="carousel slide" data-ride="carousel">
+
+                                <!-- Indicators -->
+                                <ul class="carousel-indicators">
+                                    <li data-target="#slide" data-slide-to="0" class="active"></li>
+                                    <li data-target="#slide" data-slide-to="1"></li>
+                                    <li data-target="#slide" data-slide-to="2"></li>
+                                    <li data-target="#slide" data-slide-to="3"></li>
+                                    <li data-target="#slide" data-slide-to="4"></li>
+                                    <li data-target="#slide" data-slide-to="5"></li>
+                                </ul>
+
+                                <!-- The slideshow -->
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="images/slide-1.png" alt="Vietpro Academy">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="images/slide-2.png" alt="Vietpro Academy">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="images/slide-3.png" alt="Vietpro Academy">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="images/slide-4.png" alt="Vietpro Academy">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="images/slide-5.png" alt="Vietpro Academy">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="images/slide-6.png" alt="Vietpro Academy">
+                                    </div>
+                                </div>
+
+                                <!-- Left and right controls -->
+                                <a class="carousel-control-prev" href="#slide" data-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </a>
+                                <a class="carousel-control-next" href="#slide" data-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </a>
+
+                            </div>
+                            <!--	End Slider	-->
+
+                            <!--	Cart	-->
+                            <div id="my-cart">
+                                <div class="row">
+                                    <div class="cart-nav-item col-lg-7 col-md-7 col-sm-12">Thông tin sản phẩm</div>
+                                    <div class="cart-nav-item col-lg-2 col-md-2 col-sm-12">Tùy chọn</div>
+                                    <div class="cart-nav-item col-lg-3 col-md-3 col-sm-12">Giá</div>
+                                </div>
+                                <form method="post" action="" id="list-cart">
+                                    <%- include("../../site/component/update-cart") %>
+                                </form>
+
+                            </div>
+                            <!--	End Cart	-->
+
+                            <!--	Customer Info	-->
+                            <div id="customer">
+                                <form method="post">
+                                    <div class="row">
+
+                                        <div id="customer-name" class="col-lg-4 col-md-4 col-sm-12">
+                                            <input placeholder="Họ và tên (bắt buộc)" type="text" name="name" class="form-control" required>
+                                        </div>
+                                        <div id="customer-phone" class="col-lg-4 col-md-4 col-sm-12">
+                                            <input placeholder="Số điện thoại (bắt buộc)" type="text" name="phone" class="form-control" required>
+                                        </div>
+                                        <div id="customer-mail" class="col-lg-4 col-md-4 col-sm-12">
+                                            <input placeholder="Email (bắt buộc)" type="text" name="mail" class="form-control" required>
+                                        </div>
+                                        <div id="customer-add" class="col-lg-12 col-md-12 col-sm-12">
+                                            <input placeholder="Địa chỉ nhà riêng hoặc cơ quan (bắt buộc)" type="text" name="add" class="form-control" required>
+                                        </div>
+
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="by-now col-lg-6 col-md-6 col-sm-12">
+                                        <a href="#">
+                                            <b>Mua ngay</b>
+                                            <span>Giao hàng tận nơi siêu tốc</span>
+                                        </a>
+                                    </div>
+                                    <div class="by-now col-lg-6 col-md-6 col-sm-12">
+                                        <a href="#">
+                                            <b>Trả góp Online</b>
+                                            <span>Vui lòng call (+84) 0988 550 553</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--	End Customer Info	-->
+
+                        </div>
+
+                        <%- include("../layouts/sidebar") %>
+                    </div>
+            </div>
+        </div>
+        <!--	End Body	-->
+
+        <%- include("../layouts/footer") %>
+            <!--	End Footer	-->
+            <script>
+                $(document).ready(function() {
+                    $(document).on('blur', 'input.quantity', function(e) {
+                        const self = $(this);
+                        const id = self.data("id");
+                        const value = self.val();
+
+                        $.ajax({
+                            method: 'POST',
+                            url: '/ajax-update-cart',
+                            data: {
+                                id,
+                                qty: value
+                            },
+                            success: function(data) {
+                                if (data.status === 'success') {
+                                    $('#list-cart').html(data.data.html);
+                                }
+                            }
+                        });
+                    });
+
+                    $(document).on('click', 'a.delete-cart', function(e) {
+                        e.preventDefault();
+                        const self = $(this);
+                        const id = self.data("id");
+
+                        $.ajax({
+                            method: 'POST',
+                            url: '/ajax-delete-cart',
+                            data: {
+                                id,
+                            },
+                            success: function(data) {
+                                if (data.status === 'success') {
+                                    $('#list-cart').html(data.data.html);
+                                }
+                            }
+                        });
+                    });
+                });
+            </script>
+</body>
+
+</html>

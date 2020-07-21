@@ -1,0 +1,28 @@
+<div id="comments-list" class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <% for(let comment of comments) { %>
+            <div class="comment-item">
+                <ul>
+                    <li><b><%= comment.info.name %> </b></li>
+                    <li>
+                        <%= comment.updatedAt %>
+                    </li>
+                    <li>
+                        <p>
+                            <%= comment.content %>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <% } %>
+
+    </div>
+    <div id="pagination">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Trang trước</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Trang sau</a></li>
+        </ul>
+    </div>

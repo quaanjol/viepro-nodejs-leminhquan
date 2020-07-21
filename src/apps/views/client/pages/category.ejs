@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include("../layouts/head") %>
+        <title>
+            <%= category.cat_name %> ></title>
+        <link rel="stylesheet" href="css/category.css">
+        <link rel="stylesheet" href="css/home.css">
+</head>
+
+<!--	Header	-->
+<%- include("../layouts/header") %>
+    <!--	End Header	-->
+
+    <!--	Body	-->
+    <div id="body">
+        <div class="container">
+            <%- include("../layouts/menu") %>
+                <div class="row">
+                    <div id="main" class="col-lg-8 col-md-12 col-sm-12">
+                        <!--	Slider	-->
+                        <%- include("../layouts/slide") %>
+                            <!--	End Slider	-->
+
+                            <!--	List Product	-->
+                            <div class="products">
+                                <h3>
+                                    <%= category.cat_name %> (hiện có
+                                        <%= totalProducts %> sản phẩm)</h3>
+                                <div class="product-list card-deck">
+                                    <% allProducts.forEach(item => { %>
+                                        <div class="product-item card text-center">
+                                            <a href="../../product-detail-<%= item._id %>"><img src="../admin/img/<%= item.prd_image %>"></a>
+                                            <h4>
+                                                <a href="../../product-detail-<%= item._id %>">
+                                                    <%= item.prd_name %> ></a>
+                                            </h4>
+                                            <p>Giá Bán: <span><%= item.prd_price %> đ</span></p>
+                                        </div>
+                                        <% }) %>
+                                </div>
+                                <!-- <div class="product-list card-deck">
+                                    <div class="product-item card text-center">
+                                        <a href="#"><img src="images/product-7.png"></a>
+                                        <h4><a href="#">iPhone Xs Max 2 Sim - 256GB</a></h4>
+                                        <p>Giá Bán: <span>32.990.000đ</span></p>
+                                    </div>
+                                    <div class="product-item card text-center">
+                                        <a href="#"><img src="images/product-8.png"></a>
+                                        <h4><a href="#">iPhone Xs Max 2 Sim - 256GB</a></h4>
+                                        <p>Giá Bán: <span>32.990.000đ</span></p>
+                                    </div>
+                                    <div class="product-item card text-center">
+                                        <a href="#"><img src="images/product-9.png"></a>
+                                        <h4><a href="#">iPhone Xs Max 2 Sim - 256GB</a></h4>
+                                        <p>Giá Bán: <span>32.990.000đ</span></p>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <!--	End List Product	-->
+
+                            <div id="pagination" class="d-flex justify-content-center">
+                                <ul class="pagination">
+                                    <!-- <li class="page-item"><a class="page-link" href="#">Trang trước</a></li> -->
+                                    <% for(let i = 0; i < range.length; i++){ %>
+                                        <li class="page-item active"><a class="page-link" href="../../category-<%= category.cat_name %>>-<%= category._id %>?page=<%= range[i] %>">1</a></li>
+                                        <% } %>
+                                            <!-- <li class="page-item"><a class="page-link" href="#">Trang sau</a></li> -->
+                                </ul>
+                            </div>
+
+                    </div>
+
+                    <%- include("../layouts/sidebar") %>
+                </div>
+        </div>
+    </div>
+    <!--	End Body	-->
+
+    <%- include("../layouts/footer") %>
+        <!--	End Footer	-->
+
+        </body>
+
+</html>

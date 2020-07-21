@@ -1,0 +1,16 @@
+<% comments.forEach(item => { %>
+    <tr>
+        <th scope="col">
+            <%= item.info.name %>
+        </th>
+        <th scope="col">
+            <%= item.info.email %>
+        </th>
+        <th scope="col">
+            <%= item.content %>
+        </th>
+        <th scope="col">
+            <%= item.prd_id.prd_name %>
+        </th>
+    </tr>
+    <% }) %>

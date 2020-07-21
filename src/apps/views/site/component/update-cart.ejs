@@ -1,0 +1,26 @@
+<% let totalPrice = 0 %>
+    <% products.forEach(item => { %>
+        <% cart = miniCart.find(prd => prd._id == item._id) %>
+            <% totalPrice +=  item.prd_price*cart.qty %>
+                <div class="cart-item row">
+                    <div class="cart-thumb col-lg-7 col-md-7 col-sm-12">
+                        <img src="../admin/img/<%= item.prd_image %>">
+                        <h4>
+                            <%= item.prd_name %>
+                        </h4>
+                    </div>
+
+                    <div class="cart-quantity col-lg-2 col-md-2 col-sm-12">
+                        <input name="" data-id="<%= item._id %>" type="number" class="form-control form-blue quantity" value="<%= cart.qty %>" min="1">
+                    </div>
+                    <div class="cart-price col-lg-3 col-md-3 col-sm-12"><b><%= item.prd_price*cart.qty %>đ</b><a href="/ajax-delete-cart" data-id="<%= item._id %>" class="delete-cart">Xóa</a></div>
+                </div>
+                <% }) %>
+
+                    <div class="row">
+                        <div class="cart-thumb col-lg-7 col-md-7 col-sm-12">
+                            <button id="update-cart" class="btn btn-success" type="submit" name="sbm">Cập nhật giỏ hàng</button>
+                        </div>
+                        <div class="cart-total col-lg-2 col-md-2 col-sm-12"><b>Tổng cộng:</b></div>
+                        <div class="cart-price col-lg-3 col-md-3 col-sm-12"><b><%= totalPrice %>đ</b></div>
+                    </div>

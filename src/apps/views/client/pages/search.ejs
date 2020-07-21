@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include("../layouts/head") %>
+        <title>VietPro Mobile Shop</title>
+        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/search.css">
+</head>
+
+<body>
+
+    <%- include('../layouts/header') %>
+
+        <!--	Body	-->
+        <div id="body">
+            <div class="container">
+                <%- include('../layouts/menu') %>
+                    <div class="row">
+                        <div id="main" class="col-lg-8 col-md-12 col-sm-12">
+                            <!--	Slider	-->
+                            <%- include("../layouts/slide") %>
+                                <!--	End Slider	-->
+
+                                <!--	List Product	-->
+                                <div class="products">
+                                    <div id="search-result">Kết quả tìm kiếm với sản phẩm <span><%= q %> (<%= products.length %> sản phẩm)</span></div>
+                                    <div class="product-list card-deck">
+                                        <% products.forEach(element => { %>
+                                            <div class="product-item card text-center">
+                                                <a href="/product-detail-<%= element._id %>"><img src="../admin/img/<%= element.prd_image %>"></a>
+                                                <h4>
+                                                    <a href="/product-detail-<%= element._id %>">
+                                                        <%= element.prd_name %>
+                                                    </a>
+                                                </h4>
+                                                <p>Giá Bán: <span><%= element.prd_price %>đ</span></p>
+                                            </div>
+                                            <% }); %>
+
+                                    </div>
+
+                                </div>
+                                <!--	End List Product	-->
+
+
+
+                        </div>
+                        <%- include("../layouts/sidebar") %>
+
+                    </div>
+            </div>
+        </div>
+        <!--	End Body	-->
+
+        <%- include("../layouts/footer") %>
+            <!--	End Footer	-->
+
+
+</body>
+
+</html>
